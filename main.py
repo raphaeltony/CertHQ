@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request,make_response
 from pymongo import MongoClient
+from math import ceil
 
 
 app = Flask(__name__)
@@ -15,7 +16,31 @@ collection = db['certs']
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    try:
+        cursor = collection.find({},{'event':1,'instname':1})
+        data = list(cursor)
+        for i in data:
+            i.update({'_id':str(i['_id'])})
+        nrows = ceil(len(data)/3)
+        print(data)
+
+        # finaldata structure :
+        # finaldata[0] = [ {item1}, {item2}, {item3}]
+        # finaldata[1] = [ {item3}, {item4}, {item5}]
+        # finaldata[2] = [ {item1}]
+        finaldata = []
+        j = 0
+        finaldata.append([])
+        for i in range(len(data)):
+            finaldata[j].append(data[i])
+            if (i+1)%3==0:
+                print(finaldata)
+                j=j+1
+                finaldata.append([])
+        # return finaldata
+    except Exception as e:
+        return e
+    return render_template("index.html",data=finaldata,nrows=nrows)
 
 @app.route("/add")
 def addcert():
