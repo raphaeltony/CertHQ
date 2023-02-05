@@ -87,6 +87,7 @@ updatebtn.addEventListener("click", event => {
         .then((result) => {
             console.log(result);
             alert(result);
+            window.location.reload()
         })
         .catch((error) => {
             console.log("error", error);
