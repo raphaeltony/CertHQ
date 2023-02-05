@@ -23,8 +23,36 @@
         const prize = document.getElementById("prize").value;
         const level = document.getElementById("level").value;
         const cashprize = document.getElementById("cashprize").value;
+        const selectedFile = document.getElementById("formFile").files[0];
 
-        console.log(eventname,instname,startdate,enddate,prize,level,cashprize)
+        // console.log(eventname,instname,startdate,enddate,prize,level,cashprize)
+
+        var formdata = new FormData();
+        formdata.append("event",eventname);
+        formdata.append("instname",instname);
+        formdata.append("startdate",startdate);
+        formdata.append("enddate",enddate);
+        formdata.append("prize",prize);
+        formdata.append("level",level);
+        formdata.append("cashprize",cashprize);
+        formdata.append("file", selectedFile);
+
+        var requestOptions = {
+          method: "POST",
+          body: formdata,
+          redirect: "follow",
+        };
+
+        fetch("/uploader", requestOptions)
+          .then((response) => response.text())
+          .then((result) => {
+            console.log(result);
+            alert(result);
+          })
+          .catch((error) => {
+            console.log("error", error);
+            alert(result);
+          });
       }, false)
     })
   })()
