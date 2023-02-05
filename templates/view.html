@@ -76,6 +76,17 @@
 </head>
 
 <body class="bg-light">
+  <header class="mb-5">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{{url_for('index')}}">CertHQ</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+  
+      </div>
+    </nav>
+  </header>
 
   <div class="container">
     <main>
@@ -178,7 +189,21 @@
         </div>
       </div>
     </main>
-
+    <a href="{{ url_for('index')}}" class="float">
+      <!-- <i class="fa fa-plus my-float">&plus;</i> -->
+      <svg fill="#DB162F" height="25px" width="25px" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+	 viewBox="0 0 512 512"  xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#000000;}
+</style>
+<g>
+	<polygon class="st0" points="434.162,293.382 434.162,493.862 308.321,493.862 308.321,368.583 203.682,368.583 203.682,493.862 
+		77.841,493.862 77.841,293.382 256.002,153.862 	"/>
+	<polygon class="st0" points="0,242.682 256,38.93 512,242.682 482.21,285.764 256,105.722 29.79,285.764 	"/>
+	<polygon class="st0" points="439.853,18.138 439.853,148.538 376.573,98.138 376.573,18.138 	"/>
+</g>
+      </svg>
+    </a>
   </div>
 
   <script src="{{ url_for('static', filename='assets/dist/js/bootstrap.bundle.min.js') }}"></script>
