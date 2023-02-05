@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request,make_response,redirect
+from flask import Flask, render_template, request,make_response,redirect, url_for
 from pymongo import MongoClient
 from math import ceil
 from bson.objectid import ObjectId
@@ -131,7 +131,7 @@ def delete_file(mongoid):
             print("deleted")
         except Exception as e:
             return e
-    return redirect("http://", code=302)
+    # return redirect(url_for('index'))
 
 
 

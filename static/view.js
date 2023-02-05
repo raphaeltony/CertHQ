@@ -104,11 +104,13 @@ function getMongoID(){
 
 var deletebtn = document.getElementById("delete")
 deletebtn.addEventListener("click", event =>{
+
     fetch("/delete/" + getMongoID())
     .then((response) => response.text())
     .then((result) => {
+        window.location.href = "http://127.0.0.1:5000/";
         console.log(result);
-        alert(result);
+        // alert(result);
     })
     .catch((error) => {
         console.log("error", error);
