@@ -35,7 +35,7 @@ function edit() {
     // const selectedFile = document.getElementById("formFile").files[0];
     const updatebtn = document.getElementById("update");
     updatebtn.style.display = "block"
-    document.getElementById("edit").remove();
+    // document.getElementById("edit").remove();
 
 
 

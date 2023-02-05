@@ -94,7 +94,7 @@
         <h2>View Details</h2>
       </div>
 
-      <img src="{{ url_for('viewimage',mongoid=mid) }}" class="img-fluid" alt="">
+      <img src="{{ url_for('viewimage',mongoid=mid) }}" class="img-fluid mb-5" alt="">
 
       <div class="row g-5 justify-content-center">
         <div class="col-md-7 col-lg-8">
@@ -175,14 +175,15 @@
               </div>
 
             <hr class="my-4">
+            
             <div class="d-grid gap-2 col-6 mx-auto">
-              <button class="btn btn-primary" id = "update" type="button" style="display:none">Update</button>
-            </div>
-            <div class="d-grid gap-2 col-6 mx-auto">
-              <button class="btn btn-primary" id = "edit" type="button">Edit</button>
+              <button class="btn btn-primary" id = "edit" type="button" >Edit</button>
             </div>
             <div class="d-grid gap-2 col-6 mx-auto">
               <button class="btn btn-primary" id = "delete" type="button">Delete</button>
+            </div>
+            <div class="d-grid gap-2 col-6 mx-auto">
+              <button class="btn btn-primary" id = "update" type="button" style="display:none">Update</button>
             </div>
             
           </form>
@@ -205,6 +206,7 @@
       </svg>
     </a>
   </div>
+  <footer class="mt-5"></footer>
 
   <script src="{{ url_for('static', filename='assets/dist/js/bootstrap.bundle.min.js') }}"></script>
   <script src="{{ url_for('static', filename='view.js') }}"></script>
