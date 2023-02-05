@@ -54,16 +54,16 @@ def view(mongoid):
         cursor = collection.find_one(query)
         cursor.pop('_id')
         cursor.pop('image')
-        print(cursor)
+        print(mongoid)
         # return cursor
     except Exception as e:
         return e
-    return render_template("view.html",data=cursor,mongoid=mongoid)
+    return render_template("view.html",data=cursor,mid=mongoid)
 
-@app.route("/view-image")
-def viewimage():
+@app.route("/viewimage/<mongoid>")
+def viewimage(mongoid):
     try:
-        query = {"event": "shark tank"}
+        query = {"_id": ObjectId(mongoid)}
         cursor = collection.find_one(query)
         fileName = 'cert'
         print(cursor['image'])

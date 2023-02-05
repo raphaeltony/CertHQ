@@ -83,7 +83,7 @@
         <h2>View Details</h2>
       </div>
 
-      <img src="http://127.0.0.1:5000/view-image" class="img-fluid" alt="">
+      <img src="{{ url_for('viewimage',mongoid=mid) }}" class="img-fluid" alt="">
 
       <div class="row g-5 justify-content-center">
         <div class="col-md-7 col-lg-8">
