@@ -157,11 +157,16 @@
                 </div>
               </div>
 
+              <div class="mb-3" id ="filediv" style="display:none">
+                <label for="formFile" class="form-label">Upload Certificate</label>
+                <input class="form-control" type="file" id="formFile">
+                
+              </div>
 
             <hr class="my-4">
 
             <div class="d-grid gap-2 col-6 mx-auto">
-              <button class="btn btn-primary" type="button">Edit</button>
+              <button class="btn btn-primary" id = "edit" type="button">Edit</button>
             </div>
             <div class="d-grid gap-2 col-6 mx-auto">
               <button class="btn btn-primary" type="button">Delete</button>
@@ -174,7 +179,7 @@
   </div>
 
   <script src="{{ url_for('static', filename='assets/dist/js/bootstrap.bundle.min.js') }}"></script>
-  <script src="checkout.js"></script>
+  <script src="{{ url_for('static', filename='view.js') }}"></script>
 </body>
 
 </html>

@@ -68,9 +68,20 @@ def upload_file():
         else:
             return 'Error occured'
 
-# #update 
-# @app.route('/update', methods=['GET', 'POST'])
-# def update_file():
+
+@app.route('/update', methods=['GET', 'POST'])
+def update_file():
+    try:
+        query = {"event": "shark tank"}
+        cursor = collection.find_one(query)
+        cursor.pop('_id')
+        cursor.pop('image')
+        print(cursor)
+        # return cursor
+    except Exception as e:
+        return e
+    return render_template("view.html",data=cursor)
+
 
 
 #delete
