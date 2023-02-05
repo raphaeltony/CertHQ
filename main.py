@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request,make_response
+from flask import Flask, render_template, request,make_response,redirect, url_for
 from pymongo import MongoClient
 from math import ceil
 from bson.objectid import ObjectId
@@ -121,17 +121,18 @@ def update_file(mongoid):
 
 
 #delete
-@app.route('/delete', methods=['GET', 'POST'])
-def delete_file():
+@app.route('/delete/<mongoid>', methods=['GET', 'POST'])
+def delete_file(mongoid):
     if request.method == 'GET':
         try:
-            query = {"event": "wer"}
+            query = {"_id": ObjectId(mongoid)}
             print(query)
             collection.delete_one(query)
             print("deleted")
         except Exception as e:
             return e
-    return render_template("delete.html")
+    # return redirect(url_for('index'))
+
 
 
 
