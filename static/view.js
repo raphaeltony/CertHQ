@@ -101,3 +101,18 @@ function getMongoID(){
     url = url.pop()
     return url
 }
+
+var deletebtn = document.getElementById("delete")
+deletebtn.addEventListener("click", event =>{
+    fetch("/delete/" + getMongoID())
+    .then((response) => response.text())
+    .then((result) => {
+        console.log(result);
+        alert(result);
+    })
+    .catch((error) => {
+        console.log("error", error);
+        alert(result);
+    });
+    }
+)
