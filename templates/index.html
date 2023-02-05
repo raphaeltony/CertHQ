@@ -185,7 +185,7 @@
     </svg>
         <h2 class="fw-normal">{{item['event']}}</h2>
         <p>{{item['instname']}}</p>
-        <p><a id='{{item["_id"]}}' class="btn btn-secondary" href="#">View details &raquo;</a></p>
+        <p><a id='{{item["_id"]}}' class="btn btn-secondary" href="{{ url_for('view',mongoid=item['_id']) }}">View details &raquo;</a></p>
       </div><!-- /.col-lg-4 -->
       {% endfor %}
     </div><!-- /.row -->
@@ -209,6 +209,7 @@
 
     <!-- <script src="../assets/dist/js/bootstrap.bundle.min.js"></script> -->
     <script src="{{ url_for('static', filename='assets/dist/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
 
       
   </body>
