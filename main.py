@@ -69,6 +69,23 @@ def upload_file():
         else:
             return 'Error occured'
 
+# #update 
+# @app.route('/update', methods=['GET', 'POST'])
+# def update_file():
+
+
+#delete
+@app.route('/delete', methods=['GET', 'POST'])
+def delete_file():
+    if request.method == 'GET':
+        try:
+            query = {"event": "wer"}
+            print(query)
+            collection.delete_one(query)
+            print("deleted")
+        except Exception as e:
+            return e
+    return render_template("delete.html")
 
 
 

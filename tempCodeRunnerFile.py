@@ -1,0 +1,1 @@
+@app.route('/delete',methods=['GET', 'POST'])
