@@ -83,7 +83,7 @@
         <h2>View Details</h2>
       </div>
 
-      <img src="#" class="img-fluid" alt="">
+      <img src="http://127.0.0.1:5000/view-image" class="img-fluid" alt="">
 
       <div class="row g-5 justify-content-center">
         <div class="col-md-7 col-lg-8">
@@ -91,7 +91,7 @@
             <div class="row g-3">
               <div class="col-sm-12">
                 <label for="firstName" class="form-label">Event</label>
-                <input type="text" class="form-control" id="eventname" placeholder="" value="" disabled>
+                <input type="text" class="form-control" id="eventname" placeholder="" value="{{data['event']}}" disabled>
                 <div class="invalid-feedback">
                   Valid event name is required.
                 </div>
@@ -99,7 +99,7 @@
 
               <div class="col-sm-12">
                 <label for="institution" class="form-label">Institution Name</label>
-                <input type="text" class="form-control" id="institution" placeholder="" value="" disabled>
+                <input type="text" class="form-control" id="institution" placeholder="" value="{{data['instname']}}" disabled>
                 <div class="invalid-feedback">
                   Valid institution name is required
                 </div>
@@ -107,7 +107,7 @@
 
               <div class="col-sm-12">
                 <label for="startdate" class="form-label">Start Date</label>
-                <input type="date" class="form-control" id="startdate" placeholder="" value="" disabled>
+                <input type="date" class="form-control" id="startdate" placeholder="" value="{{data['startdate']}}" disabled>
                 <div class="invalid-feedback">
                   Start date is required
                 </div>
@@ -115,7 +115,7 @@
 
               <div class="col-sm-12">
                 <label for="enddate" class="form-label">End Date</label>
-                <input type="date" class="form-control" id="enddate" placeholder="" value="" disabled>
+                <input type="date" class="form-control" id="enddate" placeholder="" value="{{data['enddate']}}" disabled>
                 <div class="invalid-feedback">
                   End date is required
                 </div>
@@ -124,7 +124,7 @@
               <div class="col-12">
                 <label for="prize-select" class="form-label">Prize</label>
                 <select class="form-select" id="prize" disabled>
-                  <option value="">Choose...</option>
+                  <option value="{{data['prize']}}">{{data['prize']}}</option>
                   <option>First</option>
                   <option>Second</option>
                   <option>Third</option>
@@ -138,7 +138,7 @@
               <div class="col-12">
                 <label for="level-select" class="form-label">Level</label>
                 <select class="form-select" id="level" disabled>
-                  <option value="">Choose...</option>
+                  <option value="{{data['level']}}">{{data['level']}}</option>
                   <option>Collegiate</option>
                   <option>District</option>
                   <option>State</option>
@@ -153,7 +153,7 @@
               <div class="col-12">
                 <label for="cash-prize" class="form-label">Cash Prize<span class="text-muted">(Optional)</span></label>
                 <div class="input-group has-validation">
-                  <input type="text" class="form-control" id="cashprize" disabled>
+                  <input type="text" class="form-control" id="cashprize" disabled value="{{data['cashprize']}}">
                 </div>
               </div>
 

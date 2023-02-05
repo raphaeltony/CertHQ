@@ -24,20 +24,20 @@ def addcert():
 @app.route("/view")
 def view():
     try:
-        query = {"event": "adsf"}
+        query = {"event": "shark tank"}
         cursor = collection.find_one(query)
         cursor.pop('_id')
         cursor.pop('image')
         print(cursor)
-        return cursor
+        # return cursor
     except Exception as e:
         return e
-    return render_template("view.html")
+    return render_template("view.html",data=cursor)
 
 @app.route("/view-image")
 def viewimage():
     try:
-        query = {"event": "adsf"}
+        query = {"event": "shark tank"}
         cursor = collection.find_one(query)
         fileName = 'cert'
         print(cursor['image'])
@@ -49,7 +49,6 @@ def viewimage():
     except Exception as e:
 #          self.errorList.append("No results found." + type(e))
             return False
-    return render_template("view.html")
 
 
 
