@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request,make_response
 from pymongo import MongoClient
 from math import ceil
+from bson.objectid import ObjectId
 
 
 app = Flask(__name__)
@@ -46,10 +47,10 @@ def index():
 def addcert():
     return render_template("addcert.html")
 
-@app.route("/view")
-def view():
+@app.route("/view/<mongoid>")
+def view(mongoid):
     try:
-        query = {"event": "shark tank"}
+        query = {"_id": ObjectId(mongoid)}
         cursor = collection.find_one(query)
         cursor.pop('_id')
         cursor.pop('image')
