@@ -69,9 +69,9 @@ def viewimage(mongoid):
         query = {"_id": ObjectId(mongoid)}
         cursor = collection.find_one(query)
         fileName = 'cert'
-        print(cursor['image'])
+        # print(cursor['image'])
         response = make_response(cursor['image'])
-        print(response)
+        # print(response)
         response.headers['Content-Type'] = 'image/jpeg'
         response.headers["Content-Dispostion"] = "attachment; filename=\"%s\"" %fileName
         return response
@@ -101,24 +101,28 @@ def upload_file():
 @app.route('/update/<mongoid>', methods=['GET', 'POST'])
 def update_file(mongoid):
     if request.method == 'POST':
-        print(dict(request.form))  
-        f = request.files['file']  #we got the file as file storage object from frontend
-        print(type(f))
-
-        if f:
-            cert_details = dict(request.form) #contains rest of the certificate details minus file
-            cert_details.update({'image':f.read()}) #to convert it into binary and append the dictionary with the file
-
+        # print(dict(request.form))  
+        cert_details = dict(request.form) #contains rest of the certificate details minus file
+        try:
+            f = request.files['file']  #we got the file as file storage object from frontend
+            if f:
+                cert_details.update({'image':f.read()}) #to convert it into binary and append the dictionary with the file
+            print(f)
+        except Exception  as e:
+            # exception will be thrown whenever file is not uploaded
+            print(e)
+        
+        try:
             # Fetch the record and update it
             query = {"_id": ObjectId(mongoid)}
             collection.update_one(query,{"$set":cert_details})
-            
 
             # cert_details.pop('image')
             return 'File uploaded successfully'
             # return render_template("view.html",data=cert_details,mongoid=mongoid)
-        else:
-            return 'Error occured'
+        except Exception as e :
+            print(e)
+            return e
         
 
 
