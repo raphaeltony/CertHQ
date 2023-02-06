@@ -139,7 +139,7 @@
               <div class="col-12">
                 <label for="institution-name" class="form-label">Institution Name</label>
                 <div class="input-group has-validation">
-                  <input type="text" class="form-control" id="institutionname">
+                  <input type="text" class="form-control" id="institutionname" placeholder="" value="" required>
                   <div class="invalid-feedback">
                     Event name is required.
                   </div>
@@ -148,7 +148,7 @@
 
               <div class="col-12">
                 <label for="start-date" class="form-label">Start Date</label>
-                <input type="date" class="form-control" id="startdate">
+                <input type="date" class="form-control" id="startdate" placeholder="" value="" required>
                 <div class="invalid-feedback">
                   Please enter a valid date.
                 </div>
@@ -156,7 +156,7 @@
 
               <div class="col-12">
                 <label for="end-date" class="form-label">End Date</label>
-                <input type="date" class="form-control" id="enddate">
+                <input type="date" class="form-control" id="enddate" placeholder="" value="" required>
                 <div class="invalid-feedback">
                   Please enter a valid date.
                 </div>
@@ -200,7 +200,10 @@
 
             <div class="mb-3">
               <label for="formFile" class="form-label">Upload Certificate</label>
-              <input class="form-control" type="file" id="formFile">
+              <input class="form-control" type="file" id="formFile" placeholder="" value="" required>
+              <div class="invalid-feedback">
+                Please enter a certificate.
+              </div>
             </div>
 
             <hr class="my-4">
