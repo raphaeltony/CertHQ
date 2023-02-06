@@ -6,7 +6,7 @@ from bson.objectid import ObjectId
 
 app = Flask(__name__)
 
-
+# Connection to MongoDB
 print("welcome to mongodb")
 client = MongoClient("mongodb://localhost:27017/")
 print(client)
@@ -15,10 +15,12 @@ collection = db['certs']
 # dictionary = {"name": "RAPH" , "age": 59 }
 # collection.insert_one(c1.__dict__)
 
+
+#for redirecting the user to the main page
 @app.route("/")
 def index():
     try:
-        cursor = collection.find({},{'event':1,'instname':1})
+        cursor = collection.find({},{'event':1,'instname':1}) #fetching only the event and instname
         data = list(cursor)
         for i in data:
             i.update({'_id':str(i['_id'])})
@@ -29,7 +31,7 @@ def index():
         # finaldata[0] = [ {item1}, {item2}, {item3}]
         # finaldata[1] = [ {item3}, {item4}, {item5}]
         # finaldata[2] = [ {item1}]
-        finaldata = []
+        finaldata = []   #for getting only 3 certificates in  a row
         j = 0
         finaldata.append([])
         for i in range(len(data)):
@@ -43,6 +45,7 @@ def index():
         return e
     return render_template("index.html",data=finaldata,nrows=nrows)
 
+#for redirecting the user to the add page
 @app.route("/add")
 def addcert():
     return render_template("addcert.html")

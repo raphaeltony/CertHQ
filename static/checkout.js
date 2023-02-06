@@ -8,15 +8,16 @@
     Array.from(forms).forEach(form => {
       form.addEventListener('submit', event => {
         if (!form.checkValidity()) {
-          event.preventDefault()
+          event.preventDefault()        //for the green ticks
           event.stopPropagation()
         }
   
         form.classList.add('was-validated')
 
         // our code
+        //getting the details from the form
         event.preventDefault()
-        const eventname = document.getElementById("event").value;
+        const eventname = document.getElementById("event").value; //here "event" is the id
         const instname = document.getElementById("institutionname").value;
         const startdate = document.getElementById("startdate").value;
         const enddate = document.getElementById("enddate").value;
@@ -27,6 +28,7 @@
 
         // console.log(eventname,instname,startdate,enddate,prize,level,cashprize)
 
+        //all the data from the form is appended into formdata
         var formdata = new FormData();
         formdata.append("event",eventname);
         formdata.append("instname",instname);
@@ -37,12 +39,15 @@
         formdata.append("cashprize",cashprize);
         formdata.append("file", selectedFile);
 
+
+        //we are making a post request
+
         var requestOptions = {
           method: "POST",
           body: formdata,
           redirect: "follow",
         };
-
+        
         fetch("/uploader", requestOptions)
           .then((response) => response.text())
           .then((result) => {
