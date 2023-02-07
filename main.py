@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request,make_response,redirect, url_for
 from pymongo import MongoClient
+from pymongo import errors
 from math import ceil
 from bson.objectid import ObjectId
 
@@ -88,14 +89,18 @@ def upload_file():
         f = request.files['file']  #we got the file as file storage object from frontend
         print(type(f))
 
-        if f:
-            cert_details = dict(request.form) #contains rest of the certificate details minus file
-            cert_details.update({'image':f.read()}) #to convert it into binary and append the dictionary with the file
-            collection.insert_one(cert_details)
+        try:
+            if f:  
+                cert_details = dict(request.form) #contains rest of the certificate details minus file
+                cert_details.update({'image':f.read()}) #to convert it into binary and append the dictionary with the file
+                collection.insert_one(cert_details)
+
+                return 'File uploaded successfully'
+            else:
+                return 'Error occured'
+        except errors.DuplicateKeyError:
+            return "Duplicate entry !"
             
-            return 'File uploaded successfully'
-        else:
-            return 'Error occured'
 
 
 @app.route('/update/<mongoid>', methods=['GET', 'POST'])
@@ -120,6 +125,8 @@ def update_file(mongoid):
             # cert_details.pop('image')
             return 'File uploaded successfully'
             # return render_template("view.html",data=cert_details,mongoid=mongoid)
+        except errors.DuplicateKeyError:
+            return "Duplicate entry !"
         except Exception as e :
             print(e)
             return e
