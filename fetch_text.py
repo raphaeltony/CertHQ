@@ -2,10 +2,11 @@ import openai
 import json
 from PIL import Image
 from pytesseract import pytesseract
+from dateutil import parser
 
 
-# tesseract
-TESSERACTPATH = "D:/tesseract/tesseract.exe"
+# tesseract : set path 
+TESSERACTPATH = "D:/tesseract/tesseract.exe"    
 
 def get_text(FILEPATH):
     img = Image.open(FILEPATH)
@@ -13,8 +14,7 @@ def get_text(FILEPATH):
     text = pytesseract.image_to_string(img)
     return text
 
-# request to chatgpt
-
+# set your openapi key here
 openai.api_key = "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"
 
 prompt = '''You are supposed to identify name without honorifics, Event, 
@@ -53,6 +53,11 @@ def get_response(FILEPATH):
 
         result += choice.message.content
 
-    d = json.loads(result)
+    d = json.loads(result)  #converting json string to python dictionary
+    try:
+        d["start_date"] = parser.parse(d["start_date"]).date()
+        d["end_date"] = parser.parse(d["end_date"]).date()
+    except(TypeError):
+        pass
     print(d)
     return d

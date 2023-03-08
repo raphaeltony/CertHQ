@@ -6,6 +6,7 @@ from bson.objectid import ObjectId
 from fetch_text import get_response
 
 
+
 app = Flask(__name__)
 
 # Connection to MongoDB
@@ -167,6 +168,7 @@ def get_file_details():
         except errors.DuplicateKeyError:
             return "Duplicate entry !"
 
+# Using Tesseract and ChatGPT to fetch the certificate details automatically
 @app.route('/fetch_text', methods=['GET', 'POST'])
 def fetch_text():
     if request.method == 'POST': 
