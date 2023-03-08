@@ -2,7 +2,9 @@
 
 A simple certificate management GUI using MongoDB. Integrated with ChatGPT to perform autofilling of certificate details.
 
+
 ## Demo
+https://user-images.githubusercontent.com/30729856/223729872-a5683d2b-7ec0-4dda-811c-f75195b5c196.mp4
 
 ## Components
 
