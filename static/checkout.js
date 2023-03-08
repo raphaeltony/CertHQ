@@ -61,3 +61,29 @@
       }, false)
     })
   })()
+
+  document.getElementById('formFile').addEventListener('change', function(e) {
+    var formdata = new FormData();
+    
+    if (e.target.files[0]) {
+      // document.body.append('You selected ' + e.target.files[0].name);
+      formdata.append("file", e.target.files[0]);
+      var requestOptions = {
+        method: "POST",
+        body: formdata
+      };
+      
+      fetch("/fetch_text", requestOptions)
+        .then((response) => response.text())
+        .then((result) => {
+          console.log(result);
+          // alert(result);
+        })
+        .catch((error) => {
+          console.log("error", error);
+          alert(result);
+        });
+    }
+  });
+
+  

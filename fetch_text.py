@@ -5,7 +5,7 @@ from pytesseract import pytesseract
 
 
 # tesseract
-TESSERACTPATH = "D:/Apps/teseract/tesseract.exe"
+TESSERACTPATH = "D:/tesseract/tesseract.exe"
 
 def get_text(FILEPATH):
     img = Image.open(FILEPATH)
@@ -15,7 +15,7 @@ def get_text(FILEPATH):
 
 # request to chatgpt
 
-openai.api_key = "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"
+openai.api_key = "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"
 
 prompt = '''You are supposed to identify name without honorifics, Event, 
 Institution Name,Start Date,
@@ -37,27 +37,22 @@ The levels can be State, National, International or Collegiate
 
 '''
 
+def get_response(FILEPATH):
+    certificate = get_text(FILEPATH)
 
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[
+                {"role": "system", "content": prompt },
+                {"role": "user", "content": certificate},
+            ]
+    )
 
+    result = ''
+    for choice in response.choices:
 
+        result += choice.message.content
 
-certificate = get_text("certs\Reuben.jpg")
-
-
-response = openai.ChatCompletion.create(
-    model="gpt-3.5-turbo",
-    messages=[
-            {"role": "system", "content": prompt },
-            {"role": "user", "content": certificate},
-        ]
-)
-
-result = ''
-for choice in response.choices:
-
-    result += choice.message.content
-
-print(result)
-
-# d = json.loads(result)
-# print(d)
+    d = json.loads(result)
+    print(d)
+    return d

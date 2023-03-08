@@ -3,6 +3,7 @@ from pymongo import MongoClient
 from pymongo import errors
 from math import ceil
 from bson.objectid import ObjectId
+from fetch_text import get_response
 
 
 app = Flask(__name__)
@@ -147,7 +148,35 @@ def delete_file(mongoid):
             return e
     # return redirect(url_for('index'))
 
+@app.route('/fetch-details', methods=['GET', 'POST'])
+def get_file_details():
+    if request.method == 'POST':
+        print(dict(request.form))  
+        f = request.files['file']  #we got the file as file storage object from frontend
+        print(type(f))
 
+        try:
+            if f:  
+                cert_details = dict(request.form) #contains rest of the certificate details minus file
+                cert_details.update({'image':f.read()}) #to convert it into binary and append the dictionary with the file
+                collection.insert_one(cert_details)
+
+                return 'File uploaded successfully'
+            else:
+                return 'Error occured'
+        except errors.DuplicateKeyError:
+            return "Duplicate entry !"
+
+@app.route('/fetch_text', methods=['GET', 'POST'])
+def fetch_text():
+    if request.method == 'POST': 
+        f = request.files['file']  #we got the file as file storage object from frontend
+        if f:  
+            f.save("new.jpg")
+            data = get_response("new.jpg")
+            return data
+        else:
+            return 'Error occured'
 
 
 if __name__ == "__main__":
