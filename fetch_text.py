@@ -15,7 +15,7 @@ def get_text(FILEPATH):
     return text
 
 # set your openapi key here
-openai.api_key = "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"
+openai.api_key = "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"
 
 prompt = '''You are supposed to identify name without honorifics, Event, 
 Institution Name,Start Date,
@@ -57,7 +57,7 @@ def get_response(FILEPATH):
     try:
         d["start_date"] = parser.parse(d["start_date"]).date()
         d["end_date"] = parser.parse(d["end_date"]).date()
-    except(TypeError):
+    except(Exception):
         pass
     print(d)
     return d
