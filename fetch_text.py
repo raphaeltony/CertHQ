@@ -15,7 +15,7 @@ def get_text(FILEPATH):
     return text
 
 # set your openapi key here
-openai.api_key = "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"
+openai.api_key = "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"
 
 prompt = '''You are supposed to identify name without honorifics, Event, 
 Institution Name,Start Date,

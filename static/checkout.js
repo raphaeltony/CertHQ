@@ -98,7 +98,7 @@
   });
 
   function set_values(data_obj){
-    document.getElementById("event").value = data_obj["name"]; //here "event" is the id
+    document.getElementById("event").value = data_obj["event"]; //here "event" is the id
     document.getElementById("institutionname").value = data_obj["instname"];
     document.getElementById("startdate").value = data_obj["start_date"];
     document.getElementById("enddate").value = data_obj["end_date"];
